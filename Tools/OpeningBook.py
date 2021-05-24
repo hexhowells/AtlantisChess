@@ -19,6 +19,7 @@ def games():
 
 
 def generate_book(move_len):
+	print("Generating book with depth limit {}...".format(move_len))
 	book = {}
 	win2idx = {'white': 0, 'draw': 1, 'black': 2}
 
@@ -93,11 +94,24 @@ def load_book():
 	return book
 
 
+def save_book(book):
+	with open("../Data/OpeningBook.json", 'w') as bookfile:
+		json.dump(book, bookfile)
+
+
 
 if __name__ == "__main__":
+	args = parse_args()
+
+	if args.create and args.lim:
+		book = generate_book(args.lim)
+		save_book(book)
+	elif args.create:
+		print("argument -lim required!")
+
 	book = load_book()
 
-	args = parse_args()
+	
 	if args.m and args.lim:
 		search_book(book, args.m, args.lim)
 	elif args.m:
@@ -106,9 +120,4 @@ if __name__ == "__main__":
 		show_opening_book(book, args.lim)
 	elif args.book:
 		show_opening_book(book, 100)
-	elif args.create and args.lim:
-		book = generate_book(args.lim)
-		with open("../Data/OpeningBook.json", 'w') as bookfile:
-			json.dump(book, bookfile)
-	elif args.create:
-		print("argument -lim required!")
+	
