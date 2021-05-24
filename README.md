@@ -10,7 +10,7 @@ Features
 - Probably around 1100 ELO
 - Uses a CNN (4 Residual Blocks) and material evaluation as a value function for AlphaBeta pruning
 - Network trained on 50M+ board positions
-- Uses a opening book for the first 4 moves
+- Uses a opening book for the first 3 moves
 - Quiescence search used to reduce the horizon problem
 - Player turn indicator on the UI
 - Ability to rewind the game to see move history
@@ -46,5 +46,5 @@ File Structure
 - ```pre-process_data.py``` - may not be included in the public repo
 - ```/Architectures``` - defines the network architectures
 - ```/Models``` - stores the trained models
-- ```/Data``` - stores the raw and processed training data and labels
+- ```/Data``` - stores the raw and processed training data and labels, and the opening book
 - ```/Tools``` - tool to create and use the opening book
